@@ -1,4 +1,4 @@
-name: Check generated HTML is up to date
+name: Keep generated HTML in sync
 
 on:
   pull_request:
@@ -6,14 +6,22 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
-  check:
-    name: Regenerate and diff
+  sync:
+    name: Regenerate HTML if needed
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # Check out the actual branch, not the merge commit,
+          # so we can push back to it if needed.
+          ref: ${{ github.head_ref || github.ref_name }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -27,16 +35,15 @@ jobs:
       - name: Run generator
         run: python generate.py
 
-      - name: Fail if generated files differ from committed files
+      - name: Commit regenerated HTML if out of sync
         run: |
-          if ! git diff --exit-code docs/; then
-            echo ""
-            echo "──────────────────────────────────────────────────────"
-            echo "ERROR: The generated HTML files are out of sync."
-            echo "You edited a YAML file but did not re-run generate.py."
-            echo ""
-            echo "Fix: run  python generate.py  locally, then commit the"
-            echo "updated files in docs/ together with your YAML changes."
-            echo "──────────────────────────────────────────────────────"
-            exit 1
+          if ! git diff --exit-code docs/ > /dev/null 2>&1; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add docs/
+            git commit -m "Auto-regenerate HTML from YAML changes [skip ci]"
+            git push
+            echo "Regenerated and committed updated HTML."
+          else
+            echo "HTML is already in sync, nothing to commit."
           fi
