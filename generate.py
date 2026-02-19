@@ -288,39 +288,45 @@ def make_options():
                 with div(cls="col-md-12 text-center"):
                     h1("Roundtable Guides", cls="mt-4")
             with div(cls="row"):
-                h2("Options")
-                with div(cls="row"):
-                    div(cls="col col-12 col-md-6").add(h4("Theme selection:"))
-                    div(cls="col col-12 col-md-6").add(select(cls="form-select", id="themes"))
-                with div(cls="row"):
-                    div(cls="col col-12 col-md-4").add(h4("Profile management:"))
-                    with form(cls="form-inline input-group pull-right gap-1"):
-                        with div(cls="col col-12 col-md-4"):
-                            select(cls="form-select", id="profiles")
-                        with div(cls="col col-12 col-md-4"):
-                            with div(cls="btn-group"):
-                                button("Add", cls="btn btn-primary", type="button", id="profileAdd")
-                            with div(cls="btn-group"):
-                                button("Edit", cls="btn btn-primary", type="button", id="profileEdit")
-                            with div(cls="btn-group"):
-                                button("NG+", cls="btn btn-primary", type="button", id="profileNG+")
-                with div(cls="row"):
-                    div(cls="col col-12 col-md-4").add(h4("Data import/export:"))
-                    with div(cls="col col-12 col-md-8"):
-                        with form(cls="form-inline gap-1 m-1"):
-                            with div(cls="btn-group pull-left"):
-                                button("Import file", cls="btn btn-primary", type="button", id="profileImport")
-                            with div(cls="btn-group pull-left"):
-                                button("Export file", cls="btn btn-primary", type="button", id="profileExport")
-                            with div(cls="btn-group pull-right"):
-                                button("Import textbox", cls="btn btn-primary", type="button", id="profileImportText")
-                            with div(cls="btn-group pull-right mt-1 mt-md-0"):
-                                button("Export clipboard", cls="btn btn-primary", type="button", id="profileExportText")
-                    with div(cls='row'):
-                        div(id='alert-div')
-                    with div(cls='row'):
-                        with div(cls="col col-12"):
-                            textarea(id="profileText", cls="form-control")
+                with div(cls="d-flex align-items-center gap-2 mb-2"):
+                    h2("Options", cls="mb-0")
+                    with button(type="button", cls="btn btn-sm btn-outline-secondary",
+                                data_bs_toggle="collapse", data_bs_target="#optionsBody",
+                                aria_expanded="false", aria_controls="optionsBody"):
+                        i(cls="bi bi-chevron-down")
+                with div(id="optionsBody", cls="collapse"):
+                    with div(cls="row"):
+                        div(cls="col col-12 col-md-6").add(h4("Theme selection:"))
+                        div(cls="col col-12 col-md-6").add(select(cls="form-select", id="themes"))
+                    with div(cls="row"):
+                        div(cls="col col-12 col-md-4").add(h4("Profile management:"))
+                        with form(cls="form-inline input-group pull-right gap-1"):
+                            with div(cls="col col-12 col-md-4"):
+                                select(cls="form-select", id="profiles")
+                            with div(cls="col col-12 col-md-4"):
+                                with div(cls="btn-group"):
+                                    button("Add", cls="btn btn-primary", type="button", id="profileAdd")
+                                with div(cls="btn-group"):
+                                    button("Edit", cls="btn btn-primary", type="button", id="profileEdit")
+                                with div(cls="btn-group"):
+                                    button("NG+", cls="btn btn-primary", type="button", id="profileNG+")
+                    with div(cls="row"):
+                        div(cls="col col-12 col-md-4").add(h4("Data import/export:"))
+                        with div(cls="col col-12 col-md-8"):
+                            with form(cls="form-inline gap-1 m-1"):
+                                with div(cls="btn-group pull-left"):
+                                    button("Import file", cls="btn btn-primary", type="button", id="profileImport")
+                                with div(cls="btn-group pull-left"):
+                                    button("Export file", cls="btn btn-primary", type="button", id="profileExport")
+                                with div(cls="btn-group pull-right"):
+                                    button("Import textbox", cls="btn btn-primary", type="button", id="profileImportText")
+                                with div(cls="btn-group pull-right mt-1 mt-md-0"):
+                                    button("Export clipboard", cls="btn btn-primary", type="button", id="profileExportText")
+                        with div(cls='row'):
+                            div(id='alert-div')
+                        with div(cls='row'):
+                            with div(cls="col col-12"):
+                                textarea(id="profileText", cls="form-control")
             with div(cls="row mt-4", id="cloudSync"):
                 h2("Cloud Sync & Backup")
                 div(id="syncAlertDiv")
