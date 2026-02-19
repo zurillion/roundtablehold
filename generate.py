@@ -321,6 +321,32 @@ def make_options():
                     with div(cls='row'):
                         with div(cls="col col-12"):
                             textarea(id="profileText", cls="form-control")
+            with div(cls="row mt-4", id="cloudSync"):
+                h2("Cloud Sync & Backup")
+                div(id="syncAlertDiv")
+                with div(id="syncInactive"):
+                    p("Back up and sync your progress across browsers and devices. "
+                      "Your data is stored in your own cloud account.", cls="text-muted mb-3")
+                    button(cls="btn btn-primary", id="btnActivateSync").add(
+                        i(cls="bi bi-cloud-upload"), " Activate Cloud Sync")
+                with div(id="syncActive", cls="d-none"):
+                    with div(cls="d-flex align-items-center gap-2 mb-2"):
+                        span(id="syncStatusBadge", cls="badge bg-success").add(
+                            i(cls="bi bi-check-circle-fill"), " Synced")
+                    p(id="syncProviderInfo", cls="mb-1")
+                    p(id="syncLastSyncTime", cls="text-muted small mb-3")
+                    with div(cls="d-flex gap-2 flex-wrap"):
+                        button(cls="btn btn-sm btn-primary", id="btnSyncNow").add(
+                            i(cls="bi bi-arrow-repeat"), " Sync Now")
+                        button(cls="btn btn-sm btn-outline-secondary", id="btnViewHistory").add(
+                            i(cls="bi bi-clock-history"), " View History")
+                        button(cls="btn btn-sm btn-outline-danger", id="btnDeactivateSync").add(
+                            i(cls="bi bi-cloud-slash"), " Deactivate")
+                    with div(id="syncVersionPanel", cls="mt-3 d-none"):
+                        h5("Version History", cls="mb-2")
+                        p("The last 10 synced snapshots. Drive also keeps its own revision "
+                          "history for older versions.", cls="text-muted small mb-2")
+                        div(cls="list-group", id="syncVersionList")
             with div(id="profileModal", cls="modal fade", tabindex="-1", role="dialog"):
                 with div(cls="modal-dialog", role="document"):
                     with div(cls="modal-content"):
@@ -377,6 +403,51 @@ def make_options():
                         with div(cls='modal-footer'):
                             a('No', href='#', cls='btn btn-primary', data_bs_dismiss='modal')
                             a('Yes', href='#', cls='btn btn-danger', id='deleteYes')
+            with div(id="syncProviderModal", cls="modal fade", tabindex="-1", role="dialog"):
+                with div(cls="modal-dialog", role="document"):
+                    with div(cls="modal-content"):
+                        with div(cls="modal-header"):
+                            h3("Choose a sync provider", cls="modal-title")
+                            button(type="button", cls="btn-close", data_bs_dismiss="modal", aria_label="Close")
+                        with div(cls="modal-body"):
+                            p("Your data is stored in your own account \u2014 the site never sees your files.",
+                              cls="text-muted small mb-3")
+                            with div(cls="list-group"):
+                                with button(cls="list-group-item list-group-item-action d-flex align-items-center gap-3 py-3",
+                                            id="btnConnectGoogle", type="button"):
+                                    i(cls="bi bi-google fs-4")
+                                    with div(cls="text-start"):
+                                        div("Google Drive", cls="fw-semibold")
+                                        div("Uses your Google account \u2014 15 GB free", cls="text-muted small")
+                                with button(cls="list-group-item list-group-item-action d-flex align-items-center gap-3 py-3 disabled",
+                                            disabled=True, type="button", title="Coming soon"):
+                                    i(cls="bi bi-cloud fs-4 text-muted")
+                                    with div(cls="text-start"):
+                                        with div(cls="fw-semibold text-muted"):
+                                            span("iCloud ")
+                                            span("Coming soon", cls="badge bg-secondary ms-1 fw-normal")
+                                        div("Uses your Apple ID", cls="text-muted small")
+                                with button(cls="list-group-item list-group-item-action d-flex align-items-center gap-3 py-3 disabled",
+                                            disabled=True, type="button", title="Coming soon"):
+                                    i(cls="bi bi-github fs-4 text-muted")
+                                    with div(cls="text-start"):
+                                        with div(cls="fw-semibold text-muted"):
+                                            span("GitHub Gist ")
+                                            span("Coming soon", cls="badge bg-secondary ms-1 fw-normal")
+                                        div("Uses your GitHub account \u2014 native version history", cls="text-muted small")
+                        with div(cls="modal-footer"):
+                            button("Cancel", type="button", cls="btn btn-secondary", data_bs_dismiss="modal")
+            with div(id="syncDeactivateModal", cls="modal fade", tabindex="-1", role="dialog"):
+                with div(cls="modal-dialog", role="document"):
+                    with div(cls="modal-content"):
+                        with div(cls="modal-header"):
+                            h3("Deactivate cloud sync?", cls="modal-title")
+                            button(type="button", cls="btn-close", data_bs_dismiss="modal", aria_label="Close")
+                        div("Your local progress will not be affected. The backup file in your cloud "
+                            "account will remain there until you delete it manually.", cls="modal-body")
+                        with div(cls="modal-footer"):
+                            button("Cancel", type="button", cls="btn btn-secondary", data_bs_dismiss="modal")
+                            button("Deactivate", type="button", cls="btn btn-danger", id="btnDeactivateConfirm")
 
         div(cls="hiddenfile").add(input_(name="upload", type="file", id="fileInput"))
         make_footer()
