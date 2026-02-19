@@ -201,6 +201,7 @@ sections:
         cords: [5670, 2046]
   -
     title: "Realm of Shadow"
+    dlc: true
     table: ["Name", "Location", "Effect"]
     items:
       - id: "20_1"
