@@ -256,6 +256,7 @@ sections:
         data: ["<a href=\"https://eldenring.wiki.fextralife.com/Mausoleum+Soldier+Ashes\">Mausoleum Soldier Ashes</a>", "Found at the base of a small dead tree at the very edge of the cliff to the north of the Walking Mausoleum."]
   -
     title: Realm of Shadow
+    dlc: true
     table: ["Name", "Location"]
     items:
       - id: "20_1"

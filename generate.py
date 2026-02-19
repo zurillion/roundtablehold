@@ -515,7 +515,7 @@ def make_checklist(page):
             with div(cls="input-group d-print-none"):
                 input_(type="search", id=page['id'] + "_search", cls="form-control my-3", placeholder="Start typing to filter results...")
 
-            if page['id'] in {'weapons', 'armor', 'incantations', 'ashesofwar', 'cookbooks'}:
+            if page['id'] in {'weapons', 'armor', 'incantations', 'ashesofwar', 'cookbooks', 'talismans', 'sorceries', 'spirit_ashes', 'bosses', 'crystal_tears', 'bell_bearings', 'ancient_dragon_smithing_stones'}:
                 with div(cls='row d-print-none mb-3'):
                     with div(cls='col-auto d-flex align-items-center gap-2'):
                         label('Show:', _for='dlc_filter', cls='mb-0')
@@ -569,7 +569,7 @@ def make_checklist(page):
                                             'data_id': page['id'] + '_' + id,
                                             'id': 'item_' + id,
                                         }
-                                        if page['id'] in {'weapons', 'armor', 'incantations', 'ashesofwar', 'cookbooks'}:
+                                        if page['id'] in {'weapons', 'armor', 'incantations', 'ashesofwar', 'cookbooks', 'talismans', 'sorceries', 'spirit_ashes', 'bosses', 'crystal_tears', 'bell_bearings', 'ancient_dragon_smithing_stones'}:
                                             is_dlc = item.get('dlc', section.get('dlc', page.get('dlc', False)))
                                             li_kwargs['data_dlc'] = str(bool(is_dlc)).lower()
                                         with li(**li_kwargs):
@@ -630,7 +630,7 @@ def make_checklist(page):
                                             'cls': "list-group-item searchable ps-0",
                                             'id': 'item_' + id,
                                         }
-                                        if page['id'] in {'weapons', 'armor', 'incantations', 'ashesofwar', 'cookbooks'}:
+                                        if page['id'] in {'weapons', 'armor', 'incantations', 'ashesofwar', 'cookbooks', 'talismans', 'sorceries', 'spirit_ashes', 'bosses', 'crystal_tears', 'bell_bearings', 'ancient_dragon_smithing_stones'}:
                                             is_dlc = item.get('dlc', section.get('dlc', page.get('dlc', False)))
                                             li_kwargs['data_dlc'] = str(bool(is_dlc)).lower()
                                         with li(**li_kwargs):

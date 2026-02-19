@@ -279,6 +279,7 @@ sections:
         data: ["Loretta's Mastery", "Fires four great arrows from magic greatbow at once", "Kill the first Boss of the Haligtree. Requires Haligtree Medallion."]
   -
     title: "Realm of Shadow"
+    dlc: true
     id: 20
     table: ["Name", "Effect", "How to get"]
     items:

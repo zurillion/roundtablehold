@@ -202,6 +202,7 @@ sections:
         map_title: "Imprisoned Merchant"
   -
     title: "Real of Shadow: NPCs' Bell Bearings"
+    dlc: true
     icon: "/img/icons/keys/edited/03142.png"
     table: ["Name", "Location"]
     table_widths: [2, 10]
@@ -212,6 +213,7 @@ sections:
         data: ["Ymir's Bell Bearing", "Obtained by killing Count Ymir in Cathedral of Manus Metyr."]
   -
     title: "Real of Shadow: Seller's Bell Bearings"
+    dlc: true
     icon: "/img/icons/keys/edited/03142.png"
     table: ["Name", "Unlocks", "Location"]
     table_widths: [3, 2, 6]
