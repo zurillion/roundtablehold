@@ -434,7 +434,9 @@
 
         activeProvider.pull().then(function (remoteData) {
             if (!remoteData) {
-                // Nothing in the cloud yet — push local data as the first version
+                // Nothing in the cloud yet — push local data as the first version.
+                // Reset state first so doSync()'s 'syncing' guard doesn't bail early.
+                currentState = 'pending';
                 doSync();
                 if (onComplete) onComplete(false);
                 return;
