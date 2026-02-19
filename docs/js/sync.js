@@ -636,6 +636,13 @@
         var history = _loadHistory();
         list.empty();
 
+        var providerNote = syncConfig && syncConfig.provider === 'github_gist'
+            ? 'The last 10 synced snapshots. Your Gist also keeps its own revision history \u2014 ' +
+              'check the Revisions tab on gist.github.com.'
+            : 'The last 10 synced snapshots. Drive also keeps its own revision ' +
+              'history for older versions.';
+        $('#syncVersionDesc').text(providerNote);
+
         if (!history.length) {
             list.append(
                 '<div class="list-group-item text-muted small">' +
