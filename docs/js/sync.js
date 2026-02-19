@@ -2,9 +2,8 @@
  * sync.js - Cloud Sync & Backup for Roundtable Guides
  *
  * Supported providers:
- *   - Google Drive  (primary, implemented)
- *   - iCloud        (coming soon)
- *   - GitHub Gist   (coming soon)
+ *   - Google Drive  (implemented)
+ *   - GitHub Gist   (implemented — Personal Access Token, no OAuth required)
  *
  * ── Google Drive Setup ────────────────────────────────────────────────────────
  * 1. Go to https://console.cloud.google.com/ and create a project.
